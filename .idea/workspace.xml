@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93f1dfdd-7e8f-432a-a1ac-ec092a908d5c" name="Changes" comment="add web shooter.">
+    <list default="true" id="93f1dfdd-7e8f-432a-a1ac-ec092a908d5c" name="Changes" comment="update web shooter.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Bullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Panel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +35,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit." />
     <MESSAGE value="add web shooter." />
-    <option name="LAST_COMMIT_MESSAGE" value="add web shooter." />
+    <MESSAGE value="update web shooter." />
+    <option name="LAST_COMMIT_MESSAGE" value="update web shooter." />
   </component>
 </project>

@@ -7,7 +7,8 @@ import java.util.Vector;
 class Panel extends JPanel{
     // field
     String location = "images/";
-    Image curr = loadImage(location + "Main.png");
+    Image curr = null;
+    Image normal = loadImage(location + "Main.png");
     Image left = loadImage(location + "WebL.png");
     Image right = loadImage(location + "WebR.png");
     Player player = new Player();
@@ -16,6 +17,7 @@ class Panel extends JPanel{
 
     // constructor
     Panel(){
+        curr = normal;
 
         setFocusable(true);
 
@@ -45,11 +47,12 @@ class Panel extends JPanel{
                 if(lastKey == 'R'){
                     bullets.add(new Bullet(x,y,7,60));
                 }else if(lastKey == 'L'){
-                    bullets.add(new Bullet(x,y,-7,-60));
+                    bullets.add(new Bullet(x,y,-7,-30));
                 }
 
-                player.isATK = false;
                 changePic();
+
+                player.isATK = false;
             }
 
             if(player.jump == true)
