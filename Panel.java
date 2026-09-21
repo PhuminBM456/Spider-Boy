@@ -42,7 +42,12 @@ class Panel extends JPanel{
                 x = player.x;
                 y = player.y;
 
-                bullets.add(new Bullet(x,y,7));
+                if(lastKey == 'R'){
+                    bullets.add(new Bullet(x,y,7,60));
+                }else if(lastKey == 'L'){
+                    bullets.add(new Bullet(x,y,-7,-60));
+                }
+
                 player.isATK = false;
                 changePic();
             }

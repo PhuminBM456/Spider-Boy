@@ -3,11 +3,11 @@ class Bullet{
     int x,y,speed,endPos;
 
     // constructor
-    Bullet(int x,int y,int speed){
-        this.x = x+60;
+    Bullet(int x,int y,int speed,int d){
+        this.x = x+d;
         this.y = y+112;
         this.speed = speed;
-        endPos = this.x + 400;
+        //System.out.println(x);
     }
 
     // method
@@ -16,9 +16,9 @@ class Bullet{
     }
 
     boolean isTimeOut(){
-        if(x >= endPos)
+        if(x >= 900 || x <= 0)
             return true;
 
-        return false;
+        return  false;
     }
 }
