@@ -27,4 +27,7 @@ class Player extends Person{
             }
         }
     }
+
+    @Override
+    void Walk(){}
 }

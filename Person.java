@@ -27,5 +27,7 @@ abstract class Person{
         x -= speed;
     }
 
+    abstract void Walk();
+
     abstract void Jump();
 }

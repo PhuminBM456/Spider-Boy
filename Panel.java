@@ -11,7 +11,10 @@ class Panel extends JPanel{
     Image normal = loadImage(location + "Main.png");
     Image left = loadImage(location + "WebL.png");
     Image right = loadImage(location + "WebR.png");
+
     Player player = new Player();
+    Enemy enemy = new Enemy();
+
     char lastKey;
     Vector<Bullet> bullets = new Vector<>();
 
@@ -58,6 +61,8 @@ class Panel extends JPanel{
             if(player.jump == true)
                 player.Jump();
 
+            enemyBot();
+
             repaint();
         });
 
@@ -70,6 +75,11 @@ class Panel extends JPanel{
         Image img = new ImageIcon(url).getImage();
 
         return  img;
+    }
+
+    void enemyBot(){
+        enemy.Walk();
+        enemy.Jump();
     }
 
     void changePic(){
@@ -97,5 +107,6 @@ class Panel extends JPanel{
         }
 
         g.drawImage(curr,player.x,player.y,150,150,this);
+        g.drawImage(enemy.enemy,enemy.x,enemy.y,150,150,this);
     }
 }
