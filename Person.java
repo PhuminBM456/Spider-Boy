@@ -15,8 +15,8 @@ abstract class Person{
     }
 
     // method
-    void ATK(){
-        isATK = !isATK;
+    void Attack(){
+        isATK = true;
     };
 
     void Right(){

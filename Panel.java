@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
+import java.util.Vector;
 
 class Panel extends JPanel{
     // field
@@ -11,6 +12,7 @@ class Panel extends JPanel{
     Image right = loadImage(location + "WebR.png");
     Player player = new Player();
     char lastKey;
+    Vector<Bullet> bullets = new Vector<>();
 
     // constructor
     Panel(){
@@ -27,7 +29,7 @@ class Panel extends JPanel{
                     lastKey = 'L';
                     player.Left();
                 }else if(e.getKeyCode() == KeyEvent.VK_Q){
-                    player.ATK();
+                    player.Attack();
                 }else if(e.getKeyCode() == KeyEvent.VK_UP){
                     player.jump = true;
                 }
@@ -36,11 +38,13 @@ class Panel extends JPanel{
 
         Timer timer = new Timer(10,e-> {
             if(player.isATK == true){
-                changePic();
+                int x,y;
+                x = player.x;
+                y = player.y;
 
-
-
+                bullets.add(new Bullet(x,y,7));
                 player.isATK = false;
+                changePic();
             }
 
             if(player.jump == true)
@@ -72,9 +76,18 @@ class Panel extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
-        g.drawImage(curr,player.x,player.y,150,150,this);
+        for(int i=0;i<bullets.size();i++){
+            Bullet bullet = bullets.get(i);
 
-        //g.setColor(Color.RED);
-        //g.fillRect(0,0,10,10);
+            if(bullet.isTimeOut()){
+                bullets.remove(i);
+            }else{
+                g.setColor(Color.RED);
+                g.fillRect(bullet.x,bullet.y,10,10);
+                bullet.Move();
+            }
+        }
+
+        g.drawImage(curr,player.x,player.y,150,150,this);
     }
 }
