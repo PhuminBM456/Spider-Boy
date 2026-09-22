@@ -44,9 +44,26 @@ class Panel extends JPanel{
         Timer timer = new Timer(10,e-> {
             if(enemy.done){
                 enemy.hp -= player.damage;
+
+                if(enemy.hp <= 0){
+                    System.out.println("Game Clear");
+                }
+
                 System.out.println(enemy.hp);
 
                 enemy.done = false;
+            }
+
+            if(player.done && enemy.shootBullet){
+                player.hp -= enemy.damage;
+
+                if(player.hp <= 0){
+                    System.out.println("Game Over");
+                }
+
+                enemy.isATK = player.done = enemy.shootBullet = false;
+
+                System.out.println(enemy.shootBullet);
             }
 
             checkPlayerATK();
@@ -108,6 +125,14 @@ class Panel extends JPanel{
                 enemy.bullet = null;
 
                 return;
+            }
+
+            // check collision
+            Bullet bullet = enemy.bullet;
+            boolean done = bullet.isCollision(bullet.getHitBox(),player.getHitBox());
+
+            if(done){
+                player.done = true;
             }
 
             enemy.bullet.Move();

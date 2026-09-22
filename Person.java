@@ -11,6 +11,7 @@ abstract class Person{
     int x,y;
     int speed = 10;
     int jumpPower = 200;
+    int damage = 10;
 
     // constructor
     Person(boolean bool){
