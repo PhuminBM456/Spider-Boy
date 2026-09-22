@@ -15,7 +15,7 @@ class Panel extends JPanel{
     Player player = new Player();
     Enemy enemy = new Enemy();
 
-    char lastKey;
+    Character lastKey = null;
     Vector<Bullet> bullets = new Vector<>();
 
     // constructor
@@ -47,7 +47,7 @@ class Panel extends JPanel{
                 x = player.x;
                 y = player.y;
 
-                if(lastKey == 'R'){
+                if(lastKey == null || lastKey == 'R'){
                     bullets.add(new Bullet(x,y,7,60));
                 }else if(lastKey == 'L'){
                     bullets.add(new Bullet(x,y,-7,-30));
@@ -86,7 +86,7 @@ class Panel extends JPanel{
     }
 
     void changePic(){
-        if(lastKey == 'R'){
+        if(lastKey == null || lastKey == 'R'){
             curr = right;
         }else{
             curr = left;
@@ -112,7 +112,13 @@ class Panel extends JPanel{
         g.drawImage(curr,player.x,player.y,150,150,this);
         g.drawImage(enemy.enemy,enemy.x,enemy.y,150,150,this);
 
-        g.setColor(Color.GREEN);
+        g.setColor(Color.BLACK);
         g.fillRect(player.x-23,player.y+20,100,10);
+
+        g.setColor(Color.GREEN);
+        g.fillRect(player.x-23,player.y+20,player.hp,10);
+
+        g.setColor(Color.BLACK);
+        g.drawString("Web Shooter " + player.web + "/" + player.maxWeb,10,20);
     }
 }

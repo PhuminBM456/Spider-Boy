@@ -1,4 +1,8 @@
 class Player extends Person{
+    // field
+    final int maxWeb = 20;
+    int web = 20;
+
     // constructor
     Player(){
         super(true);
@@ -8,6 +12,17 @@ class Player extends Person{
     }
 
     // method
+    @Override
+    void Attack(){
+        if(web == 0)
+            return;
+
+        isATK = true;
+
+        if(web!=0)
+            web-=1;
+    }
+
     @Override
     void Jump(){
         if(falling == false){

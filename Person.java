@@ -6,7 +6,7 @@ abstract class Person{
     boolean isATK = false;
     boolean jump = false;
     boolean falling = false;
-    int HP = 100;
+    int hp = 100;
     int x,y;
     int speed = 10;
     int jumpPower = 20;
@@ -17,9 +17,7 @@ abstract class Person{
     }
 
     // method
-    void Attack(){
-        isATK = true;
-    };
+    abstract void Attack();
 
     void Right(){
         x += speed;

@@ -30,6 +30,9 @@ class Enemy extends Person{
     }
 
     @Override
+    void Attack(){}
+
+    @Override
     void Walk(){
         if(walk == false){
             if(x > 0){
