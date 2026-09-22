@@ -2,7 +2,7 @@ class Player extends Person{
     // field
     final int maxWeb = 20;
     int web = 20;
-    int damage = 10;
+    boolean takeDamage = false;
 
     // constructor
     Player(){

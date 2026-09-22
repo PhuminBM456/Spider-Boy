@@ -5,17 +5,21 @@ import java.net.URL;
 class Enemy extends Person{
     // field
     String location = "images/";
+
     Image enemy = null;
-    Image curr = loadImage(location + "EnemyMain.png");
+    Image normal = loadImage(location + "EnemyMain.png");
+
     boolean shootBullet = false;
     boolean walk = false;
+    boolean dead = false;
+
     Bullet bullet = null;
 
     // constructor
     Enemy(){
         super(false);
 
-        enemy = curr;
+        enemy = normal;
         this.x = 820;
         this.y = 400;
         jumpPower = 200;
@@ -54,6 +58,11 @@ class Enemy extends Person{
     }
 
     void enemyBot(){
+        if(hp <= 0){
+            dead = true;
+            return;
+        }
+
         Walk();
         Attack();
     }

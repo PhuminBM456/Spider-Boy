@@ -11,6 +11,8 @@ abstract class Person{
     int x,y;
     int speed = 10;
     int jumpPower = 200;
+    int damage = 10;
+    int size = 150;
 
     // constructor
     Person(boolean bool){
@@ -32,5 +34,9 @@ abstract class Person{
 
     Rectangle getHitBox(){
         return new Rectangle(x-7, y+50, 65, 100);
+    }
+
+    boolean isCollision(Rectangle a,Rectangle b){
+        return a.intersects(b);
     }
 }

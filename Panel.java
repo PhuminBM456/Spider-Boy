@@ -12,6 +12,7 @@ class Panel extends JPanel{
     Image left = loadImage(location + "WebL.png");
     Image right = loadImage(location + "WebR.png");
 
+
     Player player = new Player();
     Enemy enemy = new Enemy();
 
@@ -42,23 +43,18 @@ class Panel extends JPanel{
         });
 
         Timer timer = new Timer(10,e-> {
-            if(enemy.done){
-                enemy.hp -= player.damage;
-                System.out.println(enemy.hp);
-
-                enemy.done = false;
-            }
 
             checkPlayerATK();
             checkEnemyATK();
+            enemy.enemyBot();
+            isDone();
+            getItem();
 
             if(bullets.isEmpty())
                 curr = normal;
 
             if(player.jump == true)
                 player.Jump();
-
-            enemy.enemyBot();
 
             repaint();
         });
@@ -110,6 +106,14 @@ class Panel extends JPanel{
                 return;
             }
 
+            // check collision
+            Bullet bullet = enemy.bullet;
+            boolean done = bullet.isCollision(bullet.getHitBox(),player.getHitBox());
+
+            if(done){
+                player.done = true;
+            }
+
             enemy.bullet.Move();
         }
     }
@@ -119,6 +123,40 @@ class Panel extends JPanel{
             curr = right;
         }else{
             curr = left;
+        }
+    }
+
+    void getItem(){
+
+    }
+
+    void isDone(){
+        if(enemy.done){
+            enemy.hp -= player.damage;
+
+            if(enemy.hp <= 0){
+                //System.out.println("Game Clear");
+                int webCurr = player.web;
+                int n = 20 - webCurr;
+
+                player.web += n;
+            }
+
+            System.out.println(enemy.hp);
+
+            enemy.done = false;
+        }
+
+        if(player.done && enemy.shootBullet){
+            player.hp -= enemy.damage;
+
+            if(player.hp <= 0){
+                System.out.println("Game Over");
+            }
+
+            enemy.isATK = player.done = enemy.shootBullet = false;
+
+            System.out.println(enemy.shootBullet);
         }
     }
 
@@ -159,8 +197,8 @@ class Panel extends JPanel{
         }
 
 
-        g.drawImage(curr,player.x,player.y,150,150,this);
-        g.drawImage(enemy.enemy,enemy.x,enemy.y,150,150,this);
+        g.drawImage(curr,player.x,player.y,player.size,player.size,this);
+        g.drawImage(enemy.enemy,enemy.x,enemy.y,enemy.size,enemy.size,this);
 
         // hitbox person
         g.setColor(Color.RED);
@@ -175,10 +213,12 @@ class Panel extends JPanel{
         g.setColor(Color.GREEN);
         g.fillRect(player.x-23,player.y+20,player.hp,10);
 
-        g.setColor(Color.BLACK);
-        g.fillRect(enemy.x-23,enemy.y+20,100,10);
-        g.setColor(Color.GREEN);
-        g.fillRect(enemy.x-23,enemy.y+20,enemy.hp,10);
+        if(!enemy.dead){
+            g.setColor(Color.BLACK);
+            g.fillRect(enemy.x-23,enemy.y+20,100,10);
+            g.setColor(Color.GREEN);
+            g.fillRect(enemy.x-23,enemy.y+20,enemy.hp,10);
+        }
 
         g.setColor(Color.BLACK);
         g.drawString("Web Shooter " + player.web + "/" + player.maxWeb,10,20);
