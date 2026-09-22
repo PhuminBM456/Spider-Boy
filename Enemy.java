@@ -7,8 +7,9 @@ class Enemy extends Person{
     String location = "images/";
     Image enemy = null;
     Image curr = loadImage(location + "EnemyMain.png");
-
+    boolean shootBullet = false;
     boolean walk = false;
+    Bullet bullet = null;
 
     // constructor
     Enemy(){
@@ -30,7 +31,9 @@ class Enemy extends Person{
     }
 
     @Override
-    void Attack(){}
+    void Attack(){
+        isATK = true;
+    }
 
     void Walk(){
         if(walk == false){
@@ -48,6 +51,11 @@ class Enemy extends Person{
             }
         }
 
+    }
+
+    void enemyBot(){
+        Walk();
+        Attack();
     }
 
     @Override

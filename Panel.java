@@ -49,21 +49,8 @@ class Panel extends JPanel{
                 enemy.done = false;
             }
 
-            if(player.isATK == true){
-                int x,y;
-                x = player.x;
-                y = player.y;
-
-                if(lastKey == null || lastKey == 'R'){
-                    bullets.add(new Bullet(x,y,7,60));
-                }else if(lastKey == 'L'){
-                    bullets.add(new Bullet(x,y,-7,-30));
-                }
-
-                changePic();
-
-                player.isATK = false;
-            }
+            checkPlayerATK();
+            checkEnemyATK();
 
             if(bullets.isEmpty())
                 curr = normal;
@@ -71,7 +58,7 @@ class Panel extends JPanel{
             if(player.jump == true)
                 player.Jump();
 
-            enemyBot();
+            enemy.enemyBot();
 
             repaint();
         });
@@ -87,8 +74,43 @@ class Panel extends JPanel{
         return  img;
     }
 
-    void enemyBot(){
-        enemy.Walk();
+    void checkPlayerATK(){
+        if(player.isATK == true){
+            int x,y;
+            x = player.x;
+            y = player.y;
+
+            if(lastKey == null || lastKey == 'R'){
+                bullets.add(new Bullet(x,y,7,60));
+            }else if(lastKey == 'L'){
+                bullets.add(new Bullet(x,y,-7,-30));
+            }
+
+            changePic();
+
+            player.isATK = false;
+        }
+    }
+
+    void checkEnemyATK(){
+        if(enemy.isATK == true && enemy.shootBullet == false){
+            enemy.shootBullet = true;
+
+            //System.out.println(enemy.shootBullet);
+
+            // check distance player and enemy.
+
+            enemy.bullet = new Bullet(enemy.x,enemy.y,-7,-30);
+        }else if(enemy.isATK == true && enemy.shootBullet == true){
+            if(enemy.bullet.isTimeOut()){
+                enemy.isATK = enemy.shootBullet = false;
+                enemy.bullet = null;
+
+                return;
+            }
+
+            enemy.bullet.Move();
+        }
     }
 
     void changePic(){
@@ -103,6 +125,7 @@ class Panel extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
+        // bullet player
         for(int i=0;i<bullets.size();i++){
             Bullet bullet = bullets.get(i);
 
@@ -127,6 +150,13 @@ class Panel extends JPanel{
                 bullet.Move();
             }
         }
+
+        // bullet enemy
+        if(enemy.shootBullet){
+            g.setColor(Color.BLUE);
+            g.fillRect(enemy.bullet.x,enemy.bullet.y,10,10);
+        }
+
 
         g.drawImage(curr,player.x,player.y,150,150,this);
         g.drawImage(enemy.enemy,enemy.x,enemy.y,150,150,this);
