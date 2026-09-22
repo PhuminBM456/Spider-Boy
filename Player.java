@@ -3,7 +3,7 @@ class Player extends Person{
     Player(){
         super(true);
 
-        this.x = 20;
+        this.x = 35;
         this.y = 400;
     }
 
