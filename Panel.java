@@ -43,7 +43,7 @@ class Panel extends JPanel{
 
         Timer timer = new Timer(10,e-> {
             if(enemy.done){
-                enemy.hp -= 1;
+                enemy.hp -= player.damage;
                 System.out.println(enemy.hp);
 
                 enemy.done = false;
@@ -71,7 +71,7 @@ class Panel extends JPanel{
             if(player.jump == true)
                 player.Jump();
 
-            //enemyBot();
+            enemyBot();
 
             repaint();
         });
@@ -89,7 +89,6 @@ class Panel extends JPanel{
 
     void enemyBot(){
         enemy.Walk();
-        enemy.Jump();
     }
 
     void changePic(){
@@ -135,14 +134,20 @@ class Panel extends JPanel{
         // hitbox person
         g.setColor(Color.RED);
         g.drawRect(player.x-7,player.y+50,65,100);
+
         g.setColor(Color.BLUE);
         g.drawRect(enemy.x-7,enemy.y+50,65,100);
 
+        // hp
         g.setColor(Color.BLACK);
         g.fillRect(player.x-23,player.y+20,100,10);
-
         g.setColor(Color.GREEN);
         g.fillRect(player.x-23,player.y+20,player.hp,10);
+
+        g.setColor(Color.BLACK);
+        g.fillRect(enemy.x-23,enemy.y+20,100,10);
+        g.setColor(Color.GREEN);
+        g.fillRect(enemy.x-23,enemy.y+20,enemy.hp,10);
 
         g.setColor(Color.BLACK);
         g.drawString("Web Shooter " + player.web + "/" + player.maxWeb,10,20);

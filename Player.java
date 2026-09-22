@@ -2,6 +2,7 @@ class Player extends Person{
     // field
     final int maxWeb = 20;
     int web = 20;
+    int damage = 10;
 
     // constructor
     Player(){
@@ -27,14 +28,14 @@ class Player extends Person{
     void Jump(){
         if(falling == false){
             if(y > 400-jumpPower){
-                y -= 1;
+                y -= 4;
             }else{
                 falling = true;
             }
         }else{
             if(y < 400){
                 //System.out.println(y);
-                y += 1;
+                y += 4;
             }else{
                 y = 400;
                 falling = false;
@@ -42,7 +43,4 @@ class Player extends Person{
             }
         }
     }
-
-    @Override
-    void Walk(){}
 }

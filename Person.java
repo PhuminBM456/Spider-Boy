@@ -10,7 +10,7 @@ abstract class Person{
     int hp = 100;
     int x,y;
     int speed = 10;
-    int jumpPower = 20;
+    int jumpPower = 200;
 
     // constructor
     Person(boolean bool){
@@ -25,8 +25,6 @@ abstract class Person{
     void Left(){
         x -= speed;
     }
-
-    abstract void Walk();
 
     abstract void Jump();
 
