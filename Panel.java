@@ -113,6 +113,6 @@ class Panel extends JPanel{
         g.drawImage(enemy.enemy,enemy.x,enemy.y,150,150,this);
 
         g.setColor(Color.GREEN);
-        g.fillRect(player.x-20,player.y+20,100,10);
+        g.fillRect(player.x-23,player.y+20,100,10);
     }
 }
