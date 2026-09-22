@@ -64,7 +64,7 @@ class Panel extends JPanel{
             if(player.jump == true)
                 player.Jump();
 
-            enemyBot();
+            //enemyBot();
 
             repaint();
         });
@@ -111,5 +111,8 @@ class Panel extends JPanel{
 
         g.drawImage(curr,player.x,player.y,150,150,this);
         g.drawImage(enemy.enemy,enemy.x,enemy.y,150,150,this);
+
+        g.setColor(Color.GREEN);
+        g.fillRect(player.x-20,player.y+20,100,10);
     }
 }
