@@ -1,3 +1,5 @@
+import java.awt.*;
+
 abstract class Person{
     // field
     boolean isPlayer;
@@ -7,7 +9,7 @@ abstract class Person{
     int HP = 100;
     int x,y;
     int speed = 10;
-    int jumpPower = 30;
+    int jumpPower = 20;
 
     // constructor
     Person(boolean bool){

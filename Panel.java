@@ -58,6 +58,9 @@ class Panel extends JPanel{
                 player.isATK = false;
             }
 
+            if(bullets.isEmpty())
+                curr = normal;
+
             if(player.jump == true)
                 player.Jump();
 
