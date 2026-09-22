@@ -94,13 +94,14 @@ class Panel extends JPanel{
 
     void checkEnemyATK(){
         if(enemy.isATK == true && enemy.shootBullet == false){
+            int d = enemy.x - player.x;
             enemy.shootBullet = true;
 
-            //System.out.println(enemy.shootBullet);
-
-            // check distance player and enemy.
-
-            enemy.bullet = new Bullet(enemy.x,enemy.y,-7,-30);
+            if(d > 0){
+                enemy.bullet = new Bullet(enemy.x,enemy.y,-7,-30);
+            }else{
+                enemy.bullet = new Bullet(enemy.x,enemy.y,7,60);
+            }
         }else if(enemy.isATK == true && enemy.shootBullet == true){
             if(enemy.bullet.isTimeOut()){
                 enemy.isATK = enemy.shootBullet = false;
