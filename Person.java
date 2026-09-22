@@ -6,6 +6,7 @@ abstract class Person{
     boolean isATK = false;
     boolean jump = false;
     boolean falling = false;
+    boolean done = false;
     int hp = 100;
     int x,y;
     int speed = 10;
@@ -17,8 +18,6 @@ abstract class Person{
     }
 
     // method
-    abstract void Attack();
-
     void Right(){
         x += speed;
     }
@@ -30,4 +29,10 @@ abstract class Person{
     abstract void Walk();
 
     abstract void Jump();
+
+    abstract void Attack();
+
+    Rectangle getHitBox(){
+        return new Rectangle(x-7, y+50, 65, 100);
+    }
 }

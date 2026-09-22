@@ -1,3 +1,5 @@
+import java.awt.*;
+
 class Bullet{
     // field
     int x,y,speed,endPos;
@@ -20,5 +22,13 @@ class Bullet{
             return true;
 
         return  false;
+    }
+
+    boolean isCollision(Rectangle bullet,Rectangle enm){
+        return bullet.intersects(enm);
+    }
+
+    Rectangle getHitBox(){
+        return new Rectangle(x-3, y-3, 15, 15);
     }
 }

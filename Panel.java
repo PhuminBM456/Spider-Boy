@@ -42,6 +42,13 @@ class Panel extends JPanel{
         });
 
         Timer timer = new Timer(10,e-> {
+            if(enemy.done){
+                enemy.hp -= 1;
+                System.out.println(enemy.hp);
+
+                enemy.done = false;
+            }
+
             if(player.isATK == true){
                 int x,y;
                 x = player.x;
@@ -105,12 +112,31 @@ class Panel extends JPanel{
             }else{
                 g.setColor(Color.RED);
                 g.fillRect(bullet.x,bullet.y,10,10);
+
+                // hitbox bullet
+                g.setColor(Color.BLUE);
+                g.drawRect(bullet.x-3,bullet.y-3,15,15);
+
+                // check collision
+                boolean done = bullet.isCollision(bullet.getHitBox(),enemy.getHitBox());
+
+                if(done){
+                    enemy.done = true;
+                    bullets.remove(i);
+                }
+
                 bullet.Move();
             }
         }
 
         g.drawImage(curr,player.x,player.y,150,150,this);
         g.drawImage(enemy.enemy,enemy.x,enemy.y,150,150,this);
+
+        // hitbox person
+        g.setColor(Color.RED);
+        g.drawRect(player.x-7,player.y+50,65,100);
+        g.setColor(Color.BLUE);
+        g.drawRect(enemy.x-7,enemy.y+50,65,100);
 
         g.setColor(Color.BLACK);
         g.fillRect(player.x-23,player.y+20,100,10);
