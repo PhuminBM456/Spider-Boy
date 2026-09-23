@@ -46,6 +46,8 @@ class Panel extends JPanel{
                         player.Attack();
                     }else if(e.getKeyCode() == KeyEvent.VK_UP){
                         Jump();
+                    }else if(e.getKeyCode() == KeyEvent.VK_R){
+                        Heal();
                     }
                 }
 
@@ -87,6 +89,23 @@ class Panel extends JPanel{
         Image img = new ImageIcon(url).getImage();
 
         return  img;
+    }
+
+    void Heal(){
+        int hp,n;
+
+        hp = player.hp;
+        n = ht.Search("Heal");
+
+        if(n!=0){
+            if(10 + hp > 100){
+                player.hp += (100 - player.hp);
+            }else{
+                player.hp += 10;
+            }
+
+            ht.Delete("Heal");
+        }
     }
 
     void Jump(){

@@ -29,6 +29,13 @@ class HashTable{
         arr[idx].Insert(power);
     }
 
+    void Delete(String power){
+        int idx;
+
+        idx = hashFunc(power);
+        arr[idx].delNode();
+    }
+
     int Search(String power){
         int idx;
 

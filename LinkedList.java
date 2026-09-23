@@ -52,6 +52,10 @@ class LinkedList{
         return sum;
     }
 
+    void delNode(){
+        head = head.next;
+    }
+
     void Display(){
         for(Node temp = head;temp != null;temp = temp.next){
             System.out.print(temp.power + " ");
