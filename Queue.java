@@ -46,6 +46,14 @@ class Queue{
     }
 
     void Display(){
-        System.out.println(arr[front].x);
+        int i = front;
+
+        do{
+            System.out.print(arr[i].x + " ");
+
+            i = (i+1) % MAX_SIZE;
+        }while(i != rear+1);
+
+        System.out.println();
     }
 }
