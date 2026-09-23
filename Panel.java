@@ -115,19 +115,26 @@ class Panel extends JPanel{
             boolean collsion = cap.isCollision(cap.getHitBox(),player.getHitBox());
 
             if(collsion){
-                int hp = player.hp;
-                int heal = 100 - hp;
+                String power = cap.power;
 
-                player.hp += heal;
+                switch (power){
+                    case "Heal" :
+                        player.hp += (100 - player.hp);
+                    case "Impact":
+                        player.damage += 5;
+                }
+
 
                 capsem.Dequeue();
                 capsem.status = false;
+
                 return;
             }
 
             if(cap.isOnGround()){
                 capsem.status = false;
                 capsem.arr[capsem.front].y = 0;
+
                 return;
             }
 

@@ -18,12 +18,19 @@ class Capsem{
     // constructor
     Capsem(){
         int random = rand.nextInt(901);
-        normal = loadImage(location + "Heal.png");
+        int idx = rand.nextInt(2);
 
+        switch (idx){
+            case 0:
+                power = "Heal";
+                break;
+            case 1:
+                power = "Impact";
+                break;
+        }
+
+        normal = loadImage(location + "Power" + idx + ".png");
         capsem = normal;
-
-        //System.out.println(random);
-
         x = random;
         y = 0;
         size = 20;
