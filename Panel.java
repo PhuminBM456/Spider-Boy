@@ -12,6 +12,7 @@ class Panel extends JPanel{
     Image normal = loadImage(location + "Main.png");
     Image left = loadImage(location + "WebL.png");
     Image right = loadImage(location + "WebR.png");
+    Image iconHeal =  loadImage(location + "Power0.png");
 
     boolean gameOver = false;
 
@@ -22,6 +23,7 @@ class Panel extends JPanel{
 
     Vector<Bullet> bullets = new Vector<>();
     Queue capsem = new Queue();
+    HashTable ht = new HashTable();
 
     // constructor
     Panel(){
@@ -107,7 +109,7 @@ class Panel extends JPanel{
         }
 
         if(capsem.status){
-            capsem.Display();
+            //capsem.Display();
 
             Capsem cap = capsem.arr[capsem.front];
 
@@ -315,6 +317,12 @@ class Panel extends JPanel{
         g.setColor(Color.BLACK);
         g.drawString("Web Shooter " + player.web + "/" + player.maxWeb,10,20);
         g.drawString("Level " + player.level,10,50);
+        g.drawString("Streght " + player.damage,10,80);
+
+        // item
+        g.drawImage(iconHeal,10,100,40,40,this);
+        g.setColor(Color.RED);
+        g.drawString("x2",37,145);
 
         if(gameOver){
             g.setColor(Color.RED);

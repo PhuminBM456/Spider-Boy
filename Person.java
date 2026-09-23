@@ -7,15 +7,15 @@ abstract class Person{
     boolean jump = false;
     boolean falling = false;
     boolean done = false;
+    boolean dead = false;
+    final int maxLevel = 5;
+    int level = 1;
     int hp = 100;
     int x,y;
     int speed = 10;
     int jumpPower = 200;
     int damage = 10;
     int size = 150;
-    int level = 1;
-    final int maxLevel = 5;
-    boolean dead = false;
 
     // constructor
     Person(boolean bool){
