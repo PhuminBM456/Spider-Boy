@@ -1,6 +1,6 @@
 class HashTable{
     // field
-    final int cap = 5;
+    final int cap = 3;
     LinkedList[] arr = new LinkedList[cap];
 
     //constructor

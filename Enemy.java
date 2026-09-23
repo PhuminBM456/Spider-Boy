@@ -11,7 +11,6 @@ class Enemy extends Person{
     Image left = loadImage(location + "EnemyWebL.png");
     Image right = loadImage(location + "EnemyWebR.png");
 
-
     boolean shootBullet = false;
     boolean walk = false;
 
@@ -19,7 +18,7 @@ class Enemy extends Person{
 
     // constructor
     Enemy(){
-        enemy = normal;
+        enemy = right;
         this.x = 820;
         this.y = 400;
         jumpPower = 200;
@@ -43,13 +42,11 @@ class Enemy extends Person{
         if(walk == false){
             if(x > 0){
                 Left();
-                enemy = left;
             }else{
                 walk = true;
             }
         }else{
             if(x < 820){
-                enemy = right;
                 Right();
             }else{
                 x = 820;

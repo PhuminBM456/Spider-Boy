@@ -190,8 +190,10 @@ class Panel extends JPanel{
             enemy.shootBullet = true;
 
             if(d > 0){
+                enemy.enemy = enemy.left;
                 enemy.bullet = new Bullet(enemy.x,enemy.y,-7,-30);
             }else{
+                enemy.enemy = enemy.right;
                 enemy.bullet = new Bullet(enemy.x,enemy.y,7,60);
             }
         }else if(enemy.isATK == true && enemy.shootBullet == true){
@@ -231,8 +233,6 @@ class Panel extends JPanel{
             enemy.hp -= player.damage;
 
             if(enemy.hp <= 0){
-                //if(player.level >= 2)
-                    //enemy.speed += 5;
 
                 int webCurr = player.web;
                 int n = 20 - webCurr;
