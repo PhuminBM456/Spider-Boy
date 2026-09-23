@@ -12,6 +12,7 @@ class Panel extends JPanel{
     Image left = loadImage(location + "WebL.png");
     Image right = loadImage(location + "WebR.png");
 
+    boolean gameOver = false;
 
     Player player = new Player();
     Enemy enemy = new Enemy();
@@ -28,17 +29,21 @@ class Panel extends JPanel{
         addKeyListener(new KeyAdapter(){
             @Override
             public void keyPressed(KeyEvent e){
-                if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-                    lastKey = 'R';
-                    player.Right();
-                }else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-                    lastKey = 'L';
-                    player.Left();
-                }else if(e.getKeyCode() == KeyEvent.VK_Q){
-                    player.Attack();
-                }else if(e.getKeyCode() == KeyEvent.VK_UP){
-                    player.jump = true;
+
+                if(!gameOver && player.level != 5){
+                    if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+                        lastKey = 'R';
+                        player.Right();
+                    }else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+                        lastKey = 'L';
+                        player.Left();
+                    }else if(e.getKeyCode() == KeyEvent.VK_Q){
+                        player.Attack();
+                    }else if(e.getKeyCode() == KeyEvent.VK_UP){
+                        player.jump = true;
+                    }
                 }
+
             }
         });
 
@@ -46,9 +51,15 @@ class Panel extends JPanel{
 
             checkPlayerATK();
             checkEnemyATK();
-            enemy.enemyBot();
+
+            if(!gameOver && player.level != 5)
+                enemy.enemyBot();
+
             isDone();
             getItem();
+
+            if(player.playerDead())
+                gameOver = true;
 
             if(bullets.isEmpty())
                 curr = normal;
@@ -135,12 +146,14 @@ class Panel extends JPanel{
             enemy.hp -= player.damage;
 
             if(enemy.hp <= 0){
-                //System.out.println("Game Clear");
+
                 int webCurr = player.web;
                 int n = 20 - webCurr;
 
-                player.damage += 5;
                 player.web += n;
+                player.damage += 5;
+                player.speed += 1;
+                player.jumpPower += 5;
 
                 if(player.level != player.maxLevel)
                     player.level += 1;
@@ -155,7 +168,7 @@ class Panel extends JPanel{
             player.hp -= enemy.damage;
 
             if(player.hp <= 0){
-                System.out.println("Game Over");
+                player.dead = true;
             }
 
             enemy.isATK = player.done = enemy.shootBullet = false;
@@ -228,5 +241,10 @@ class Panel extends JPanel{
         g.setColor(Color.BLACK);
         g.drawString("Web Shooter " + player.web + "/" + player.maxWeb,10,20);
         g.drawString("Level " + player.level,10,50);
+
+        if(gameOver){
+            g.setColor(Color.RED);
+            g.drawString("MISSION FAILED",100,100);
+        }
     }
 }

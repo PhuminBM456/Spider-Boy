@@ -15,6 +15,7 @@ abstract class Person{
     int size = 150;
     int level = 1;
     final int maxLevel = 5;
+    boolean dead = false;
 
     // constructor
     Person(boolean bool){

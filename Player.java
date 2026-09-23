@@ -43,4 +43,8 @@ class Player extends Person{
             }
         }
     }
+
+    boolean playerDead(){
+        return dead == true;
+    }
 }

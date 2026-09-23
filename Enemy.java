@@ -11,9 +11,11 @@ class Enemy extends Person{
     Image left = loadImage(location + "EnemyWebL.png");
     Image right = loadImage(location + "EnemyWebR.png");
 
+
+
     boolean shootBullet = false;
     boolean walk = false;
-    boolean dead = false;
+
 
     Bullet bullet = null;
 
@@ -63,13 +65,18 @@ class Enemy extends Person{
 
     void transform(){
         if(dead){
-
+            speed += 1;
+            damage += 5;
         }
+
+        dead = false;
+        hp = 100;
     }
 
     void enemyBot(){
         if(hp <= 0){
             dead = true;
+            transform();
             return;
         }
 
