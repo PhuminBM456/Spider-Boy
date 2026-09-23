@@ -68,6 +68,7 @@ class Enemy extends Person{
             speed += 1;
             damage += 5;
             hp = 100;
+            jumpPower += 1;
         }
 
         dead = false;

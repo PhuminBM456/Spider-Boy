@@ -7,6 +7,7 @@ import java.util.Vector;
 class Panel extends JPanel{
     // field
     String location = "images/";
+
     Image curr = null;
     Image normal = loadImage(location + "Main.png");
     Image left = loadImage(location + "WebL.png");
@@ -14,15 +15,18 @@ class Panel extends JPanel{
 
     boolean gameOver = false;
 
+    Character lastKey = null;
+
     Player player = new Player();
     Enemy enemy = new Enemy();
 
-    Character lastKey = null;
     Vector<Bullet> bullets = new Vector<>();
+    Vector<Capsem> capsem = new Vector<>();
 
     // constructor
     Panel(){
         curr = normal;
+        capsem.add(new Capsem(0,0));
 
         setFocusable(true);
 
@@ -40,7 +44,7 @@ class Panel extends JPanel{
                     }else if(e.getKeyCode() == KeyEvent.VK_Q){
                         player.Attack();
                     }else if(e.getKeyCode() == KeyEvent.VK_UP){
-                        player.jump = true;
+                        Jump();
                     }
                 }
 
@@ -48,6 +52,7 @@ class Panel extends JPanel{
         });
 
         Timer timer = new Timer(10,e-> {
+            Capsem();
 
             checkPlayerATK();
             checkEnemyATK();
@@ -79,6 +84,19 @@ class Panel extends JPanel{
         Image img = new ImageIcon(url).getImage();
 
         return  img;
+    }
+
+    void Jump(){
+        player.jump = true;
+    }
+
+    void Capsem(){
+        if(!capsem.isEmpty()){
+            for(int i=0;i<capsem.size();i++){
+                Capsem cap = capsem.get(i);
+                cap.Move();
+            }
+        }
     }
 
     void checkPlayerATK(){
@@ -223,6 +241,14 @@ class Panel extends JPanel{
 
         g.setColor(Color.BLUE);
         g.drawRect(enemy.x-7,enemy.y+50,65,100);
+
+        // capsem
+        if(!capsem.isEmpty()){
+            for(int i=0;i<capsem.size();i++){
+                Capsem cap = capsem.get(i);
+                g.drawImage(cap.capsem,cap.x,cap.y,cap.size,cap.size,this);
+            }
+        }
 
         // hp
         g.setColor(Color.BLACK);
