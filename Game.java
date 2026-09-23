@@ -8,6 +8,7 @@ class Game extends JFrame{
         window.setTitle("Spider Boy");
         window.setSize(900,600);
         window.setLocationRelativeTo(null);
+        window.setResizable(false);
 
         window.add(new Panel());
 

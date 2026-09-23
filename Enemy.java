@@ -11,6 +11,7 @@ class Enemy extends Person{
     Image left = loadImage(location + "EnemyWebL.png");
     Image right = loadImage(location + "EnemyWebR.png");
 
+
     boolean shootBullet = false;
     boolean walk = false;
 
@@ -64,6 +65,8 @@ class Enemy extends Person{
             damage += 5;
             hp = 100;
             jumpPower += 1;
+            x = 820;
+            y = 400;
         }
 
         dead = false;

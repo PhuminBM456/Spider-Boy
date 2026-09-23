@@ -17,7 +17,7 @@ class Capsem{
 
     // constructor
     Capsem(){
-        int random = rand.nextInt(901);
+        int random = rand.nextInt(801);
         int idx = rand.nextInt(2);
 
         switch (idx){

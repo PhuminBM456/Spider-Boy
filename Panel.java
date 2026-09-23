@@ -35,7 +35,7 @@ class Panel extends JPanel{
             @Override
             public void keyPressed(KeyEvent e){
 
-                if(!gameOver && player.level != 5){
+                if(!gameOver && player.level != player.maxLevel){
                     if(e.getKeyCode() == KeyEvent.VK_RIGHT){
                         lastKey = 'R';
                         player.Right();
@@ -60,8 +60,8 @@ class Panel extends JPanel{
             checkPlayerATK();
             checkEnemyATK();
 
-            if(!gameOver && player.level != 5)
-                enemy.enemyBot(player.level);
+            if(!gameOver && player.level != player.maxLevel)
+                //enemy.enemyBot(player.level);
 
             isDone();
             getItem();
@@ -144,6 +144,8 @@ class Panel extends JPanel{
                     //}else{
                         ht.Insert(power);
                     //}
+                }else if(power == "Impact"){
+                    player.damage += 5;
                 }
 
                 capsem.Dequeue();
@@ -238,11 +240,11 @@ class Panel extends JPanel{
                 player.speed += 1;
                 player.jumpPower += 5;
 
-                if(player.level != player.maxLevel)
+                if(player.level != player.maxLevel-1)
                     player.level += 1;
             }
 
-            System.out.println(enemy.hp);
+            //System.out.println(enemy.hp);
 
             enemy.done = false;
         }
@@ -345,7 +347,7 @@ class Panel extends JPanel{
 
         if(gameOver){
             g.setColor(Color.RED);
-            g.drawString("MISSION FAILED",100,100);
+            g.drawString("MISSION FAILED",400,100);
         }
     }
 }

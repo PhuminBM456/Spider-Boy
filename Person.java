@@ -8,7 +8,7 @@ abstract class Person{
     boolean falling = false;
     boolean done = false;
     boolean dead = false;
-    final int maxLevel = 5;
+    final int maxLevel = 4;
     int level = 1;
     int hp = 100;
     int x,y;
