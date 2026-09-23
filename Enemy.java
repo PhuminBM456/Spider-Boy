@@ -73,7 +73,7 @@ class Enemy extends Person{
         dead = false;
     }
 
-    void enemyBot(){
+    void enemyBot(int currLevel){
         if(hp <= 0){
             dead = true;
             transform();
@@ -82,6 +82,10 @@ class Enemy extends Person{
 
         Walk();
         Attack();
+
+        if(currLevel >= 2){
+            Jump();
+        }
     }
 
     @Override

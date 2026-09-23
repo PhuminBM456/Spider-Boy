@@ -53,7 +53,7 @@ class Panel extends JPanel{
             checkEnemyATK();
 
             if(!gameOver && player.level != 5)
-                enemy.enemyBot();
+                enemy.enemyBot(player.level);
 
             isDone();
             getItem();
