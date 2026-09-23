@@ -139,7 +139,11 @@ class Panel extends JPanel{
                 int webCurr = player.web;
                 int n = 20 - webCurr;
 
+                player.damage += 5;
                 player.web += n;
+
+                if(player.level != player.maxLevel)
+                    player.level += 1;
             }
 
             System.out.println(enemy.hp);
@@ -220,7 +224,9 @@ class Panel extends JPanel{
             g.fillRect(enemy.x-23,enemy.y+20,enemy.hp,10);
         }
 
+        // text
         g.setColor(Color.BLACK);
         g.drawString("Web Shooter " + player.web + "/" + player.maxWeb,10,20);
+        g.drawString("Level " + player.level,10,50);
     }
 }

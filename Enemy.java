@@ -8,6 +8,8 @@ class Enemy extends Person{
 
     Image enemy = null;
     Image normal = loadImage(location + "EnemyMain.png");
+    Image left = loadImage(location + "EnemyWebL.png");
+    Image right = loadImage(location + "EnemyWebR.png");
 
     boolean shootBullet = false;
     boolean walk = false;
@@ -43,11 +45,13 @@ class Enemy extends Person{
         if(walk == false){
             if(x > 0){
                 Left();
+                enemy = left;
             }else{
                 walk = true;
             }
         }else{
             if(x < 820){
+                enemy = right;
                 Right();
             }else{
                 x = 820;
@@ -55,6 +59,12 @@ class Enemy extends Person{
             }
         }
 
+    }
+
+    void transform(){
+        if(dead){
+
+        }
     }
 
     void enemyBot(){

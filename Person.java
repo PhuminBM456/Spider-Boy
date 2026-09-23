@@ -13,6 +13,8 @@ abstract class Person{
     int jumpPower = 200;
     int damage = 10;
     int size = 150;
+    int level = 1;
+    final int maxLevel = 5;
 
     // constructor
     Person(boolean bool){
