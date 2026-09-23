@@ -27,7 +27,7 @@ class Enemy extends Person{
         this.x = 820;
         this.y = 400;
         jumpPower = 200;
-        speed = 2;
+        speed = 1;
     }
 
     // method
@@ -67,10 +67,10 @@ class Enemy extends Person{
         if(dead){
             speed += 1;
             damage += 5;
+            hp = 100;
         }
 
         dead = false;
-        hp = 100;
     }
 
     void enemyBot(){
