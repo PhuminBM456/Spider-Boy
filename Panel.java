@@ -21,12 +21,11 @@ class Panel extends JPanel{
     Enemy enemy = new Enemy();
 
     Vector<Bullet> bullets = new Vector<>();
-    Vector<Capsem> capsem = new Vector<>();
+    Queue capsem = new Queue();
 
     // constructor
     Panel(){
         curr = normal;
-        capsem.add(new Capsem(0,0));
 
         setFocusable(true);
 
@@ -72,6 +71,8 @@ class Panel extends JPanel{
             if(player.jump == true)
                 player.Jump();
 
+
+
             repaint();
         });
 
@@ -91,11 +92,40 @@ class Panel extends JPanel{
     }
 
     void Capsem(){
-        if(!capsem.isEmpty()){
-            for(int i=0;i<capsem.size();i++){
-                Capsem cap = capsem.get(i);
-                cap.Move();
+        if(!capsem.status){
+            if(capsem.isEmpty()) {
+                capsem.Enqueue(new Capsem());
+
+            }else{
+                Capsem temp = capsem.Dequeue();
+
+                capsem.Enqueue(new Capsem());
+                capsem.Enqueue(temp);
             }
+
+            capsem.status = true;
+        }
+
+        if(capsem.status){
+
+            Capsem cap = capsem.arr[capsem.front];
+
+            //System.out.println(capsem.arr[capsem.front].x);
+
+            // check collision
+            boolean collsion = cap.isCollision(cap.getHitBox(),player.getHitBox());
+
+            if(collsion)
+                System.out.println("Collision");
+
+            if(cap.isOnGround()){
+                capsem.status = false;
+                capsem.arr[capsem.front].y = 0;
+                return;
+            }
+
+            cap.Move();
+
         }
     }
 
@@ -243,11 +273,15 @@ class Panel extends JPanel{
         g.drawRect(enemy.x-7,enemy.y+50,65,100);
 
         // capsem
-        if(!capsem.isEmpty()){
-            for(int i=0;i<capsem.size();i++){
-                Capsem cap = capsem.get(i);
-                g.drawImage(cap.capsem,cap.x,cap.y,cap.size,cap.size,this);
-            }
+        if(capsem.status){
+
+            Capsem cap = capsem.arr[capsem.front];
+            g.drawImage(cap.capsem,cap.x,cap.y,cap.size,cap.size,this);
+
+            // hitbox capsem
+            g.setColor(Color.BLUE);
+            g.drawRect(cap.x,cap.y,17,20);
+
         }
 
         // hp

@@ -11,11 +11,8 @@ class Enemy extends Person{
     Image left = loadImage(location + "EnemyWebL.png");
     Image right = loadImage(location + "EnemyWebR.png");
 
-
-
     boolean shootBullet = false;
     boolean walk = false;
-
 
     Bullet bullet = null;
 
