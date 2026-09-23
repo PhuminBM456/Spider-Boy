@@ -98,10 +98,10 @@ class Panel extends JPanel{
         n = ht.Search("Heal");
 
         if(n!=0){
-            if(10 + hp > 100){
+            if(20 + hp > 100){
                 player.hp += (100 - player.hp);
             }else{
-                player.hp += 10;
+                player.hp += 20;
             }
 
             ht.Delete("Heal");

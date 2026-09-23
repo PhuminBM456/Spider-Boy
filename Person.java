@@ -18,9 +18,7 @@ abstract class Person{
     int size = 150;
 
     // constructor
-    Person(boolean bool){
-        isPlayer = bool;
-    }
+    Person(){}
 
     // method
     void Right(){

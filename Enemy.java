@@ -18,8 +18,6 @@ class Enemy extends Person{
 
     // constructor
     Enemy(){
-        super(false);
-
         enemy = normal;
         this.x = 820;
         this.y = 400;

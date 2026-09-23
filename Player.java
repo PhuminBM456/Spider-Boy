@@ -6,8 +6,6 @@ class Player extends Person{
 
     // constructor
     Player(){
-        super(true);
-
         this.x = 35;
         this.y = 400;
     }

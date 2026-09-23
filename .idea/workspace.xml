@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="93f1dfdd-7e8f-432a-a1ac-ec092a908d5c" name="Changes" comment="UwU">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capsem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Capsem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/HashTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
