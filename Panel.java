@@ -114,8 +114,16 @@ class Panel extends JPanel{
             // check collision
             boolean collsion = cap.isCollision(cap.getHitBox(),player.getHitBox());
 
-            if(collsion)
-                System.out.println("Collision");
+            if(collsion){
+                int hp = player.hp;
+                int heal = 100 - hp;
+
+                player.hp += heal;
+
+                capsem.Dequeue();
+                capsem.status = false;
+                return;
+            }
 
             if(cap.isOnGround()){
                 capsem.status = false;
