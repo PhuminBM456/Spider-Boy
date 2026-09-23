@@ -59,14 +59,16 @@ class Enemy extends Person{
 
     }
 
-    void transform(){
+    void transform(int level){
         if(dead){
-            speed += 1;
             damage += 5;
             hp = 100;
-            jumpPower += 1;
             x = 820;
             y = 400;
+
+            if(level >= 3){
+                speed += 5;
+            }
         }
 
         dead = false;
@@ -75,16 +77,16 @@ class Enemy extends Person{
     void enemyBot(int currLevel){
         if(hp <= 0){
             dead = true;
-            transform();
+            transform(currLevel);
             return;
         }
-
-        Walk();
-        Attack();
 
         if(currLevel >= 2){
             Jump();
         }
+
+        Walk();
+        Attack();
     }
 
     @Override

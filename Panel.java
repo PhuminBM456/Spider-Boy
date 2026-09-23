@@ -61,7 +61,7 @@ class Panel extends JPanel{
             checkEnemyATK();
 
             if(!gameOver && player.level != player.maxLevel)
-                //enemy.enemyBot(player.level);
+                enemy.enemyBot(player.level);
 
             isDone();
             getItem();
@@ -231,6 +231,8 @@ class Panel extends JPanel{
             enemy.hp -= player.damage;
 
             if(enemy.hp <= 0){
+                //if(player.level >= 2)
+                    //enemy.speed += 5;
 
                 int webCurr = player.web;
                 int n = 20 - webCurr;
