@@ -29,6 +29,14 @@ class HashTable{
         arr[idx].Insert(power);
     }
 
+    int Search(String power){
+        int idx;
+
+        idx = hashFunc(power);
+
+        return arr[idx].countNode();
+    }
+
     public static void main(String[] args){
         HashTable ht = new HashTable();
 

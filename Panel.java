@@ -119,12 +119,22 @@ class Panel extends JPanel{
             if(collsion){
                 String power = cap.power;
 
+                if(power == "Heal"){
+                    if(player.hp < 100){
+                        player.hp += (100 - player.hp);
+                    }else{
+                        ht.Insert(power);
+                    }
+                }
+
+                /*
                 switch (power){
                     case "Heal" :
                         player.hp += (100 - player.hp);
                     case "Impact":
                         player.damage += 5;
                 }
+                */
 
 
                 capsem.Dequeue();
@@ -322,7 +332,7 @@ class Panel extends JPanel{
         // item
         g.drawImage(iconHeal,10,100,40,40,this);
         g.setColor(Color.RED);
-        g.drawString("x2",37,145);
+        g.drawString("x"+ht.Search("Heal"),37,145);
 
         if(gameOver){
             g.setColor(Color.RED);

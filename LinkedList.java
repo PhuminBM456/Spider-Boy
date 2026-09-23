@@ -42,6 +42,16 @@ class LinkedList{
         lastNode.next = newNode;
     }
 
+    int countNode(){
+        int sum = 0;
+
+        for(Node temp = head;temp != null;temp = temp.next){
+            ++sum;
+        }
+
+        return sum;
+    }
+
     void Display(){
         for(Node temp = head;temp != null;temp = temp.next){
             System.out.print(temp.power + " ");
