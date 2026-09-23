@@ -120,22 +120,12 @@ class Panel extends JPanel{
                 String power = cap.power;
 
                 if(power == "Heal"){
-                    if(player.hp < 100){
-                        player.hp += (100 - player.hp);
-                    }else{
+                    //if(player.hp < 100){
+                        //player.hp += (100 - player.hp);
+                    //}else{
                         ht.Insert(power);
-                    }
+                    //}
                 }
-
-                /*
-                switch (power){
-                    case "Heal" :
-                        player.hp += (100 - player.hp);
-                    case "Impact":
-                        player.damage += 5;
-                }
-                */
-
 
                 capsem.Dequeue();
                 capsem.status = false;
