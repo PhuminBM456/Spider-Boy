@@ -92,14 +92,14 @@ class Panel extends JPanel{
     }
 
     void Capsem(){
+
         if(!capsem.status){
             if(capsem.isEmpty()) {
                 capsem.Enqueue(new Capsem());
 
             }else{
-                Capsem temp = capsem.Dequeue();
-
                 capsem.Enqueue(new Capsem());
+                Capsem temp = capsem.Dequeue();
                 capsem.Enqueue(temp);
             }
 
@@ -107,10 +107,9 @@ class Panel extends JPanel{
         }
 
         if(capsem.status){
+            capsem.Display();
 
             Capsem cap = capsem.arr[capsem.front];
-
-            //System.out.println(capsem.arr[capsem.front].x);
 
             // check collision
             boolean collsion = cap.isCollision(cap.getHitBox(),player.getHitBox());

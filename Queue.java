@@ -14,7 +14,7 @@ class Queue{
     }
 
     boolean isFull(){
-        return (front + 1) % MAX_SIZE == rear;
+        return (rear + 1) % MAX_SIZE == front;
     }
 
     void Enqueue(Capsem cap){
@@ -46,6 +46,6 @@ class Queue{
     }
 
     void Display(){
-
+        System.out.println(arr[front].x);
     }
 }
