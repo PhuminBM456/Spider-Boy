@@ -381,8 +381,14 @@ class Panel extends JPanel{
         }
 
         if(layout){ // table
-            int idx = 1;
+            int idx,dX,dY;
+
+            idx = 1;
+            dY = 0;
+
             for(int j=1;j<=3;j++){
+                dX = 0;
+
                 for(int i=1;i<=3;i++){
                     g.setColor(Color.GRAY);
                     g.fillRect(200*i,100*j,85,85);
@@ -392,12 +398,19 @@ class Panel extends JPanel{
 
                     g.setColor(Color.BLACK);
                     g.drawString(""+idx++,200*i,100*j+10);
+
+
+                    g.drawImage(iconHeal,222+dX,118+dY,40,40,this);
+                    dX+=200;
+
+                    //g.setColor(Color.RED);
+                    //g.drawString("x"+ht.Search("Recovery"),260,170);
                 }
+
+                dY+=100;
             }
 
-            g.drawImage(iconHeal,222,118,40,40,this); // protect
-            g.setColor(Color.RED);
-            g.drawString("x"+ht.Search("Recovery"),260,170);
+            //g.drawImage(iconHeal,222,118+dY,40,40,this);
         }
 
         if(gameOver){
