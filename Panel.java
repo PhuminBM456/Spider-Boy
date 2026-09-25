@@ -380,8 +380,16 @@ class Panel extends JPanel{
             g.drawRect(7,100,40,40);
         }
 
-        if(layout){
-            System.out.println(true);
+        if(layout){ // layout pocket dimension
+            for(int j=1;j<=3;j++){
+                for(int i=1;i<=3;i++){
+                    g.setColor(Color.GRAY);
+                    g.fillRect(200*i,100*j,85,85);
+
+                    g.setColor(Color.WHITE);
+                    g.fillRect(200*i,100*j,80,80);
+                }
+            }
         }
 
         if(gameOver){
