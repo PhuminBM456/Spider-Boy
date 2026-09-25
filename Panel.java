@@ -387,6 +387,7 @@ class Panel extends JPanel{
         }
 
         if(layout){ // layout pocket dimension
+            int idx = 1;
             for(int j=1;j<=3;j++){
                 for(int i=1;i<=3;i++){
                     g.setColor(Color.GRAY);
@@ -394,6 +395,9 @@ class Panel extends JPanel{
 
                     g.setColor(Color.WHITE);
                     g.fillRect(200*i,100*j,80,80);
+
+                    g.setColor(Color.BLACK);
+                    g.drawString(""+idx++,200*i,100*j+10);
                 }
             }
         }
