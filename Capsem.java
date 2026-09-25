@@ -22,7 +22,7 @@ class Capsem{
 
         switch (idx){
             case 0:
-                power = "Heal";
+                power = "Recovery";
                 break;
             case 1:
                 power = "Impact";

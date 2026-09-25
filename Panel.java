@@ -164,7 +164,7 @@ class Panel extends JPanel{
             if(collsion){
                 String power = cap.power;
 
-                if(power == "Heal"){
+                if(power == "Recovery"){
                     //if(player.hp < 100){
                         //player.hp += (100 - player.hp);
                     //}else{
@@ -366,12 +366,6 @@ class Panel extends JPanel{
         g.drawString("Level " + player.level,10,50);
         g.drawString("Streght " + player.damage,10,80);
 
-        // item
-
-        //g.drawImage(iconHeal,10,100,40,40,this); // protect
-        //g.setColor(Color.RED);
-        //g.drawString("x"+ht.Search("Heal"),37,145);
-
         g.drawImage(iconBlank,10,100,40,40,this); // pocket dimension
         g.setColor(Color.BLACK);
 
@@ -386,7 +380,7 @@ class Panel extends JPanel{
             g.drawRect(7,100,40,40);
         }
 
-        if(layout){ // layout pocket dimension
+        if(layout){ // table
             int idx = 1;
             for(int j=1;j<=3;j++){
                 for(int i=1;i<=3;i++){
@@ -400,6 +394,10 @@ class Panel extends JPanel{
                     g.drawString(""+idx++,200*i,100*j+10);
                 }
             }
+
+            g.drawImage(iconHeal,222,118,40,40,this); // protect
+            g.setColor(Color.RED);
+            g.drawString("x"+ht.Search("Recovery"),260,170);
         }
 
         if(gameOver){
