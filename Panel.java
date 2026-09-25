@@ -13,8 +13,10 @@ class Panel extends JPanel{
     Image left = loadImage(location + "WebL.png");
     Image right = loadImage(location + "WebR.png");
     Image iconHeal =  loadImage(location + "Power0.png");
+    Image iconBlank =  loadImage(location + "Power3.png");
 
     boolean gameOver = false;
+    boolean openDimen = false;
 
     Character lastKey = null;
 
@@ -48,6 +50,8 @@ class Panel extends JPanel{
                         Jump();
                     }else if(e.getKeyCode() == KeyEvent.VK_R){
                         Heal();
+                    }else if(e.getKeyCode() == KeyEvent.VK_B){
+                        openPocketDimen();
                     }
                 }
 
@@ -56,15 +60,12 @@ class Panel extends JPanel{
 
         Timer timer = new Timer(10,e-> {
             Capsem();
-
             checkPlayerATK();
             checkEnemyATK();
-
-            if(!gameOver && player.level != player.maxLevel)
-                enemy.enemyBot(player.level);
-
+            //enmBot();
             isDone();
             getItem();
+
 
             if(player.playerDead())
                 gameOver = true;
@@ -74,8 +75,6 @@ class Panel extends JPanel{
 
             if(player.jump == true)
                 player.Jump();
-
-
 
             repaint();
         });
@@ -89,6 +88,11 @@ class Panel extends JPanel{
         Image img = new ImageIcon(url).getImage();
 
         return  img;
+    }
+
+    void enmBot(){
+        if(!gameOver && player.level != player.maxLevel)
+            enemy.enemyBot(player.level);
     }
 
     void Heal(){
@@ -105,6 +109,14 @@ class Panel extends JPanel{
             }
 
             ht.Delete("Heal");
+        }
+    }
+
+    void openPocketDimen(){
+        if(openDimen == false){
+            openDimen = true;
+        }else{
+            openDimen = false;
         }
     }
 
@@ -260,7 +272,7 @@ class Panel extends JPanel{
 
             enemy.isATK = player.done = enemy.shootBullet = false;
 
-            System.out.println(enemy.shootBullet);
+            //System.out.println(enemy.shootBullet);
         }
     }
 
@@ -317,8 +329,8 @@ class Panel extends JPanel{
             Capsem cap = capsem.arr[capsem.front];
             g.drawImage(cap.capsem,cap.x,cap.y,cap.size,cap.size,this);
 
-            // hitbox capsem
-            g.setColor(Color.BLUE);
+
+            g.setColor(Color.BLUE); // hitbox capsem
             g.drawRect(cap.x,cap.y,17,20);
 
         }
@@ -343,9 +355,19 @@ class Panel extends JPanel{
         g.drawString("Streght " + player.damage,10,80);
 
         // item
-        g.drawImage(iconHeal,10,100,40,40,this);
-        g.setColor(Color.RED);
-        g.drawString("x"+ht.Search("Heal"),37,145);
+
+        //g.drawImage(iconHeal,10,100,40,40,this); // protect
+        //g.setColor(Color.RED);
+        //g.drawString("x"+ht.Search("Heal"),37,145);
+
+        g.drawImage(iconBlank,10,100,40,40,this); // pocket dimension
+        g.setColor(Color.BLACK);
+        g.drawString("B",50,120);
+
+        if(openDimen){ // selected
+            g.setColor(Color.RED);
+            g.drawRect(7,100,40,40);
+        }
 
         if(gameOver){
             g.setColor(Color.RED);
