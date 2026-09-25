@@ -400,17 +400,18 @@ class Panel extends JPanel{
                     g.drawString(""+idx++,200*i,100*j+10);
 
 
-                    g.drawImage(iconHeal,222+dX,118+dY,40,40,this);
-                    dX+=200;
+                    if(idx <= ht.cap && ht.arr[idx-1].head != null){
+                        g.drawImage(iconHeal,222+dX,118+dY,40,40,this);
+                        dX+=200;
 
-                    //g.setColor(Color.RED);
-                    //g.drawString("x"+ht.Search("Recovery"),260,170);
+                        g.setColor(Color.RED);
+                        g.drawString("x"+ht.Search("Recovery"),55+dX,165+dY);
+                    }
+
                 }
 
                 dY+=100;
             }
-
-            //g.drawImage(iconHeal,222,118+dY,40,40,this);
         }
 
         if(gameOver){
