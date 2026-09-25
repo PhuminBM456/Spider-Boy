@@ -51,6 +51,8 @@ class Panel extends JPanel{
                     }else if(e.getKeyCode() == KeyEvent.VK_R){
                         Heal();
                     }else if(e.getKeyCode() == KeyEvent.VK_B){
+                        openDimen = !openDimen;
+                    }else if(e.getKeyCode() == KeyEvent.VK_ENTER){
                         openPocketDimen();
                     }
                 }
@@ -113,10 +115,8 @@ class Panel extends JPanel{
     }
 
     void openPocketDimen(){
-        if(openDimen == false){
-            openDimen = true;
-        }else{
-            openDimen = false;
+        if(openDimen){
+            System.out.println(true);
         }
     }
 
