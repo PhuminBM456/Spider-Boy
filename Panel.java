@@ -57,13 +57,14 @@ class Panel extends JPanel{
                             return;
                         }
 
-                        if(openDimen == false){
-                            openDimen = false;
+                        if(openDimen && layout){
+                            openDimen = layout = false;
                             return;
                         }
 
-                        if(openDimen && layout){
-                            openDimen = layout = false;
+                        if(openDimen == true){
+                            openDimen = false;
+                            return;
                         }
                     }else if(e.getKeyCode() == KeyEvent.VK_ENTER){
                         openPocketDimen();
@@ -373,7 +374,12 @@ class Panel extends JPanel{
 
         g.drawImage(iconBlank,10,100,40,40,this); // pocket dimension
         g.setColor(Color.BLACK);
-        g.drawString("B",50,120);
+
+        if(lastKey != null && lastKey == 'B'){
+            g.drawString("ENTER",50,120);
+        }else{
+            g.drawString("B",50,120);
+        }
 
         if(openDimen){ // selected
             g.setColor(Color.RED);
