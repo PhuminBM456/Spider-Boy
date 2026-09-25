@@ -17,6 +17,7 @@ class Panel extends JPanel{
 
     boolean gameOver = false;
     boolean openDimen = false;
+    boolean layout = false;
 
     Character lastKey = null;
 
@@ -51,7 +52,19 @@ class Panel extends JPanel{
                     }else if(e.getKeyCode() == KeyEvent.VK_R){
                         Heal();
                     }else if(e.getKeyCode() == KeyEvent.VK_B){
-                        openDimen = !openDimen;
+                        if(openDimen == false){
+                            openDimen = true;
+                            return;
+                        }
+
+                        if(openDimen == false){
+                            openDimen = false;
+                            return;
+                        }
+
+                        if(openDimen && layout){
+                            openDimen = layout = false;
+                        }
                     }else if(e.getKeyCode() == KeyEvent.VK_ENTER){
                         openPocketDimen();
                     }
@@ -116,7 +129,7 @@ class Panel extends JPanel{
 
     void openPocketDimen(){
         if(openDimen){
-            System.out.println(true);
+            layout = true;
         }
     }
 
@@ -325,10 +338,8 @@ class Panel extends JPanel{
 
         // capsem
         if(capsem.status){
-
             Capsem cap = capsem.arr[capsem.front];
             g.drawImage(cap.capsem,cap.x,cap.y,cap.size,cap.size,this);
-
 
             g.setColor(Color.BLUE); // hitbox capsem
             g.drawRect(cap.x,cap.y,17,20);
@@ -367,6 +378,10 @@ class Panel extends JPanel{
         if(openDimen){ // selected
             g.setColor(Color.RED);
             g.drawRect(7,100,40,40);
+        }
+
+        if(layout){
+            System.out.println(true);
         }
 
         if(gameOver){
