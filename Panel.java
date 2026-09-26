@@ -104,7 +104,7 @@ class Panel extends JPanel{
             Capsem();
             checkPlayerATK();
             checkEnemyATK();
-            enmBot();
+            //enmBot();
             isDone();
 
             if(layout){
@@ -444,10 +444,10 @@ class Panel extends JPanel{
         }
 
         if(layout){ // table
-            int idx,dX,dY;
+            int idx,dX,dY,count;
 
             idx = 1;
-            dY = 0;
+            dY = count = 0;
 
             for(int j=1;j<=3;j++){
                 dX = 0;
@@ -479,6 +479,8 @@ class Panel extends JPanel{
                         g.drawString("x"+ht.Search(ht.arr[idx-1].head.power),260+dX,165+dY);
 
                         powerSelected = ht.arr[idx-1].head.power;
+                        dX+=200;
+                        ++count;
                     }
 
                     if(frameSelected == idx){
@@ -487,11 +489,14 @@ class Panel extends JPanel{
                         g.drawRect(222+dX,118+dY,40,40);
                     }
 
-                    dX+=200;
+
                     ++idx;
                 }
 
-                dY+=100;
+                if(count == 3){
+                    count = 0;
+                    dY+=100;
+                }
             }
         }
 
