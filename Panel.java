@@ -156,23 +156,29 @@ class Panel extends JPanel{
     void getItem(){
 
         if(frameSelected >= 1 && frameSelected <= 9 && powerSelected != null){
+            System.out.println(powerSelected);
 
             if(powerSelected == "Impact"){
                 player.damage += 10;
-
                 ht.Delete("Impact");
+
                 return;
             }
 
             if(powerSelected == "Recovery"){
                 if(player.hp < 100){
                     player.hp += 10;
+                    ht.Delete("Recovery");
                 }
 
-                ht.Delete("Recovery");
                 return;
             }
 
+            if(powerSelected == "Stream"){
+                // code UwU
+
+                return;
+            }
         }
     }
 
@@ -478,13 +484,14 @@ class Panel extends JPanel{
                         g.setColor(Color.RED);
                         g.drawString("x"+ht.Search(ht.arr[idx-1].head.power),260+dX,165+dY);
 
-                        powerSelected = ht.arr[idx-1].head.power;
+
 
                         ++count;
                     }
 
-                    if(frameSelected == idx){
-                        //System.out.println(idx);
+                    if(frameSelected == idx && ht.arr[idx-1].head != null){
+
+                        powerSelected = ht.arr[idx-1].head.power;
                         g.setColor(Color.RED);
                         g.drawRect(222+dX,118+dY,40,40);
                     }
