@@ -18,7 +18,7 @@ class Capsem{
     // constructor
     Capsem(){
         int random = rand.nextInt(801);
-        int idx = rand.nextInt(2);
+        int idx = rand.nextInt(3);
 
         switch (idx){
             case 0:
@@ -26,6 +26,9 @@ class Capsem{
                 break;
             case 1:
                 power = "Impact";
+                break;
+            case 2:
+                power = "Stream";
                 break;
         }
 

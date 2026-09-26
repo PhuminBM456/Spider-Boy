@@ -17,6 +17,7 @@ class Panel extends JPanel{
     Image right = loadImage(location + "WebR.png");
     Image iconRecovery =  loadImage(location + "Power0.png");
     Image iconImpact =  loadImage(location + "Power1.png");
+    Image iconStream =  loadImage(location + "Power2.png");
     Image iconBlank =  loadImage(location + "Power3.png");
 
     boolean gameOver = false;
@@ -104,7 +105,7 @@ class Panel extends JPanel{
             Capsem();
             checkPlayerATK();
             checkEnemyATK();
-            enmBot();
+            //enmBot();
             isDone();
 
             if(layout){
@@ -233,6 +234,8 @@ class Panel extends JPanel{
 
             if(collsion){
                 String power = cap.power;
+
+                System.out.println(power);
 
                 ht.Insert(power);
 
@@ -466,6 +469,8 @@ class Panel extends JPanel{
                             icon = iconRecovery;
                         }else if(powerName == "Impact"){
                             icon = iconImpact;
+                        }else if(powerName == "Stream"){
+                            icon = iconStream;
                         }
 
                         g.drawImage(icon,222+dX,118+dY,45,40,this);
