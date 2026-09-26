@@ -6,7 +6,7 @@ import java.util.Vector;
 
 class Panel extends JPanel{
     // field
-    int frameSelected = 1;
+    int frameSelected = 0;
 
     String location = "images/";
 
@@ -61,6 +61,7 @@ class Panel extends JPanel{
 
                         if(openDimen && layout){
                             openDimen = layout = false;
+                            frameSelected = 0;
                             return;
                         }
 
