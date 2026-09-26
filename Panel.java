@@ -7,6 +7,7 @@ import java.util.Vector;
 class Panel extends JPanel{
     // field
     int frameSelected = 0;
+    String powerSelected = null;
 
     String location = "images/";
 
@@ -63,6 +64,7 @@ class Panel extends JPanel{
                             openDimen = layout = false;
                             frameSelected = 0;
                             lastKey = null;
+                            powerSelected = null;
                             return;
                         }
 
@@ -72,6 +74,7 @@ class Panel extends JPanel{
                         }
                     }else if(e.getKeyCode() == KeyEvent.VK_ENTER){
                         openPocketDimen();
+                        getItem();
                     }else if(e.getKeyCode() == KeyEvent.VK_1){
                         lastKey = '1';
                     }else if(e.getKeyCode() == KeyEvent.VK_2){
@@ -102,7 +105,6 @@ class Panel extends JPanel{
             checkEnemyATK();
             enmBot();
             isDone();
-            getItem();
 
             if(layout){
                 if(lastKey != null && lastKey == '1'){
@@ -147,6 +149,12 @@ class Panel extends JPanel{
         Image img = new ImageIcon(url).getImage();
 
         return  img;
+    }
+
+    void getItem(){
+        if(frameSelected == 1 && powerSelected != null){
+            System.out.println(powerSelected);
+        }
     }
 
     void enmBot(){
@@ -292,10 +300,6 @@ class Panel extends JPanel{
         }else{
             curr = left;
         }
-    }
-
-    void getItem(){
-
     }
 
     void isDone(){
@@ -448,11 +452,13 @@ class Panel extends JPanel{
                         g.drawImage(iconHeal,222+dX,118+dY,45,40,this);
 
                         g.setColor(Color.RED);
-                        g.drawString("x"+ht.Search("Recovery"),260+dX,165+dY);
+                        g.drawString("x"+ht.Search(ht.arr[idx-1].head.power),260+dX,165+dY);
+
+                        powerSelected = ht.arr[idx-1].head.power;
                     }
 
                     if(frameSelected == idx-1){
-                        System.out.println(frameSelected);
+                        //System.out.println(frameSelected);
                         g.setColor(Color.RED);
                         g.drawRect(222+dX,118+dY,40,40);
                     }

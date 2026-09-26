@@ -3,6 +3,7 @@ class Node{
     String power;
     Node next;
 
+
     // constructor
     Node(String power){
         this.power = power;
