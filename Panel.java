@@ -62,6 +62,7 @@ class Panel extends JPanel{
                         if(openDimen && layout){
                             openDimen = layout = false;
                             frameSelected = 0;
+                            lastKey = null;
                             return;
                         }
 
@@ -149,8 +150,9 @@ class Panel extends JPanel{
     }
 
     void enmBot(){
-        if(!gameOver && player.level != player.maxLevel)
-            enemy.enemyBot(player.level);
+        if(!gameOver && player.level != player.maxLevel){
+            //enemy.enemyBot(player.level);
+        }
     }
 
     void Heal(){
@@ -449,7 +451,10 @@ class Panel extends JPanel{
                         g.drawString("x"+ht.Search("Recovery"),55+dX,165+dY);
                     }
 
+                    System.out.println(frameSelected);
+
                     if(frameSelected == idx-1){
+                        System.out.println(frameSelected);
                         g.setColor(Color.RED);
                         g.drawRect(222+dX,118+dY,40,40);
                     }
