@@ -153,7 +153,9 @@ class Panel extends JPanel{
 
     void getItem(){
         if(frameSelected == 1 && powerSelected != null){
-            System.out.println(powerSelected);
+            int idx = ht.Search(powerSelected);
+
+            ht.Delete(powerSelected);
         }
     }
 
