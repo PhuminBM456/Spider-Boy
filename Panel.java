@@ -104,7 +104,7 @@ class Panel extends JPanel{
             Capsem();
             checkPlayerATK();
             checkEnemyATK();
-            //enmBot();
+            enmBot();
             isDone();
 
             if(layout){
@@ -154,21 +154,24 @@ class Panel extends JPanel{
 
     void getItem(){
 
-        /*if(frameSelected == 1 && powerSelected != null){
-            System.out.println(powerSelected);
-        }*/
-
         if(frameSelected >= 1 && frameSelected <= 9 && powerSelected != null){
 
             if(powerSelected == "Impact"){
                 player.damage += 10;
-                ht.Delete(powerSelected);
-            }else if(powerSelected == "Recovery"){
+
+                ht.Delete("Impact");
+                return;
+            }
+
+            if(powerSelected == "Recovery"){
                 if(player.hp < 100){
                     player.hp += 10;
-                    ht.Delete(powerSelected);
                 }
+
+                ht.Delete("Recovery");
+                return;
             }
+
         }
     }
 
@@ -231,15 +234,7 @@ class Panel extends JPanel{
             if(collsion){
                 String power = cap.power;
 
-                if(power == "Recovery"){
-                    //if(player.hp < 100){
-                        //player.hp += (100 - player.hp);
-                    //}else{
-                        ht.Insert(power);
-                    //}
-                }else if(power == "Impact"){
-                    ht.Insert(power);
-                }
+                ht.Insert(power);
 
                 capsem.Dequeue();
                 capsem.status = false;
@@ -479,20 +474,20 @@ class Panel extends JPanel{
                         g.drawString("x"+ht.Search(ht.arr[idx-1].head.power),260+dX,165+dY);
 
                         powerSelected = ht.arr[idx-1].head.power;
-                        dX+=200;
+
                         ++count;
                     }
 
                     if(frameSelected == idx){
-                        //System.out.println(frameSelected);
+                        //System.out.println(idx);
                         g.setColor(Color.RED);
                         g.drawRect(222+dX,118+dY,40,40);
                     }
 
-
                     ++idx;
-                }
+                    dX+=200;
 
+                }
                 if(count == 3){
                     count = 0;
                     dY+=100;
