@@ -6,6 +6,8 @@ import java.util.Vector;
 
 class Panel extends JPanel{
     // field
+    int frameSelected = 1;
+
     String location = "images/";
 
     Image curr = null;
@@ -68,6 +70,24 @@ class Panel extends JPanel{
                         }
                     }else if(e.getKeyCode() == KeyEvent.VK_ENTER){
                         openPocketDimen();
+                    }else if(e.getKeyCode() == KeyEvent.VK_1){
+                        lastKey = '1';
+                    }else if(e.getKeyCode() == KeyEvent.VK_2){
+                        lastKey = '2';
+                    }else if(e.getKeyCode() == KeyEvent.VK_3){
+                        lastKey = '3';
+                    }else if(e.getKeyCode() == KeyEvent.VK_4){
+                        lastKey = '4';
+                    }else if(e.getKeyCode() == KeyEvent.VK_5){
+                        lastKey = '5';
+                    }else if(e.getKeyCode() == KeyEvent.VK_6){
+                        lastKey = '6';
+                    }else if(e.getKeyCode() == KeyEvent.VK_7){
+                        lastKey = '7';
+                    }else if(e.getKeyCode() == KeyEvent.VK_8){
+                        lastKey = '8';
+                    }else if(e.getKeyCode() == KeyEvent.VK_9){
+                        lastKey = '9';
                     }
                 }
 
@@ -78,10 +98,31 @@ class Panel extends JPanel{
             Capsem();
             checkPlayerATK();
             checkEnemyATK();
-            //enmBot();
+            enmBot();
             isDone();
             getItem();
 
+            if(layout){
+                if(lastKey != null && lastKey == '1'){
+                    frameSelected = 1;
+                }else if(lastKey != null && lastKey == '2'){
+                    frameSelected = 2;
+                }else if(lastKey != null && lastKey == '3'){
+                    frameSelected = 3;
+                }else if(lastKey != null && lastKey == '4'){
+                    frameSelected = 4;
+                }else if(lastKey != null && lastKey == '5'){
+                    frameSelected = 5;
+                }else if(lastKey != null && lastKey == '6'){
+                    frameSelected = 6;
+                }else if(lastKey != null && lastKey == '7'){
+                    frameSelected = 7;
+                }else if(lastKey != null && lastKey == '8'){
+                    frameSelected = 8;
+                }else if(lastKey != null && lastKey == '9'){
+                    frameSelected = 9;
+                }
+            }
 
             if(player.playerDead())
                 gameOver = true;
@@ -402,11 +443,17 @@ class Panel extends JPanel{
 
                     if(idx <= ht.cap && ht.arr[idx-1].head != null){
                         g.drawImage(iconHeal,222+dX,118+dY,40,40,this);
-                        dX+=200;
 
                         g.setColor(Color.RED);
                         g.drawString("x"+ht.Search("Recovery"),55+dX,165+dY);
                     }
+
+                    if(frameSelected == idx-1){
+                        g.setColor(Color.RED);
+                        g.drawRect(222+dX,118+dY,40,40);
+                    }
+
+                    dX+=200;
 
                 }
 
