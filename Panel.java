@@ -15,7 +15,8 @@ class Panel extends JPanel{
     Image normal = loadImage(location + "Main.png");
     Image left = loadImage(location + "WebL.png");
     Image right = loadImage(location + "WebR.png");
-    Image iconHeal =  loadImage(location + "Power0.png");
+    Image iconRecovery =  loadImage(location + "Power0.png");
+    Image iconImpact =  loadImage(location + "Power1.png");
     Image iconBlank =  loadImage(location + "Power3.png");
 
     boolean gameOver = false;
@@ -103,7 +104,7 @@ class Panel extends JPanel{
             Capsem();
             checkPlayerATK();
             checkEnemyATK();
-            enmBot();
+            //enmBot();
             isDone();
 
             if(layout){
@@ -153,15 +154,15 @@ class Panel extends JPanel{
 
     void getItem(){
         if(frameSelected == 1 && powerSelected != null){
-            int idx = ht.Search(powerSelected);
-
-            ht.Delete(powerSelected);
+            System.out.println(powerSelected);
+        }if(frameSelected == 2 && powerSelected != null){
+            System.out.println(powerSelected);
         }
     }
 
     void enmBot(){
         if(!gameOver && player.level != player.maxLevel){
-            //enemy.enemyBot(player.level);
+            enemy.enemyBot(player.level);
         }
     }
 
@@ -218,6 +219,8 @@ class Panel extends JPanel{
             if(collsion){
                 String power = cap.power;
 
+                System.out.println(cap.power);
+
                 if(power == "Recovery"){
                     //if(player.hp < 100){
                         //player.hp += (100 - player.hp);
@@ -225,7 +228,7 @@ class Panel extends JPanel{
                         ht.Insert(power);
                     //}
                 }else if(power == "Impact"){
-                    player.damage += 5;
+                    ht.Insert(power);
                 }
 
                 capsem.Dequeue();
@@ -447,11 +450,20 @@ class Panel extends JPanel{
                     g.fillRect(200*i,100*j,80,80);
 
                     g.setColor(Color.BLACK);
-                    g.drawString(""+idx++,200*i,100*j+10);
+                    g.drawString(""+idx,200*i,100*j+10);
 
 
                     if(idx <= ht.cap && ht.arr[idx-1].head != null){
-                        g.drawImage(iconHeal,222+dX,118+dY,45,40,this);
+                        String powerName = ht.arr[idx-1].head.power;
+                        Image icon = null;
+
+                        if(powerName == "Recovery"){
+                            icon = iconRecovery;
+                        }else if(powerName == "Impact"){
+                            icon = iconImpact;
+                        }
+
+                        g.drawImage(icon,222+dX,118+dY,45,40,this);
 
                         g.setColor(Color.RED);
                         g.drawString("x"+ht.Search(ht.arr[idx-1].head.power),260+dX,165+dY);
@@ -459,14 +471,14 @@ class Panel extends JPanel{
                         powerSelected = ht.arr[idx-1].head.power;
                     }
 
-                    if(frameSelected == idx-1){
+                    if(frameSelected == idx){
                         //System.out.println(frameSelected);
                         g.setColor(Color.RED);
                         g.drawRect(222+dX,118+dY,40,40);
                     }
 
                     dX+=200;
-
+                    ++idx;
                 }
 
                 dY+=100;

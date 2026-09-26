@@ -48,5 +48,6 @@ class HashTable{
         HashTable ht = new HashTable();
 
         ht.Insert("Impact");
+        System.out.println(ht.Search("Impact"));
     }
 }
