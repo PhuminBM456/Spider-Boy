@@ -54,8 +54,6 @@ class Panel extends JPanel{
                         player.Attack();
                     }else if(e.getKeyCode() == KeyEvent.VK_UP){
                         Jump();
-                    }else if(e.getKeyCode() == KeyEvent.VK_R){
-                        Heal();
                     }else if(e.getKeyCode() == KeyEvent.VK_B){
                         if(openDimen == false){
                             openDimen = true;
@@ -185,23 +183,6 @@ class Panel extends JPanel{
     void enmBot(){
         if(!gameOver && player.level != player.maxLevel){
             enemy.enemyBot(player.level);
-        }
-    }
-
-    void Heal(){
-        int hp,n;
-
-        hp = player.hp;
-        n = ht.Search("Heal");
-
-        if(n!=0){
-            if(20 + hp > 100){
-                player.hp += (100 - player.hp);
-            }else{
-                player.hp += 20;
-            }
-
-            ht.Delete("Heal");
         }
     }
 
