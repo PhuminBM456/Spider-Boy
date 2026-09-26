@@ -104,7 +104,7 @@ class Panel extends JPanel{
             Capsem();
             checkPlayerATK();
             checkEnemyATK();
-            //enmBot();
+            enmBot();
             isDone();
 
             if(layout){
@@ -153,10 +153,22 @@ class Panel extends JPanel{
     }
 
     void getItem(){
-        if(frameSelected == 1 && powerSelected != null){
+
+        /*if(frameSelected == 1 && powerSelected != null){
             System.out.println(powerSelected);
-        }if(frameSelected == 2 && powerSelected != null){
-            System.out.println(powerSelected);
+        }*/
+
+        if(frameSelected >= 1 && frameSelected <= 9 && powerSelected != null){
+
+            if(powerSelected == "Impact"){
+                player.damage += 10;
+                ht.Delete(powerSelected);
+            }else if(powerSelected == "Recovery"){
+                if(player.hp < 100){
+                    player.hp += 10;
+                    ht.Delete(powerSelected);
+                }
+            }
         }
     }
 
@@ -218,8 +230,6 @@ class Panel extends JPanel{
 
             if(collsion){
                 String power = cap.power;
-
-                System.out.println(cap.power);
 
                 if(power == "Recovery"){
                     //if(player.hp < 100){
