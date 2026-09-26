@@ -448,10 +448,8 @@ class Panel extends JPanel{
                         g.drawImage(iconHeal,222+dX,118+dY,45,40,this);
 
                         g.setColor(Color.RED);
-                        g.drawString("x"+ht.Search("Recovery"),55+dX,165+dY);
+                        g.drawString("x"+ht.Search("Recovery"),260+dX,165+dY);
                     }
-
-                    System.out.println(frameSelected);
 
                     if(frameSelected == idx-1){
                         System.out.println(frameSelected);
