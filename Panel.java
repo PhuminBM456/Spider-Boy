@@ -442,7 +442,7 @@ class Panel extends JPanel{
 
 
                     if(idx <= ht.cap && ht.arr[idx-1].head != null){
-                        g.drawImage(iconHeal,222+dX,118+dY,40,40,this);
+                        g.drawImage(iconHeal,222+dX,118+dY,45,40,this);
 
                         g.setColor(Color.RED);
                         g.drawString("x"+ht.Search("Recovery"),55+dX,165+dY);
