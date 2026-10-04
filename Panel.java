@@ -173,7 +173,10 @@ class Panel extends JPanel{
             }
 
             if(powerSelected == "Stream"){
-                // code UwU
+                player.stream = true;
+                player.jumpPower += 200;
+
+                ht.Delete("Stream");
 
                 return;
             }
