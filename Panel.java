@@ -158,6 +158,7 @@ class Panel extends JPanel{
 
             if(powerSelected == "Impact"){
                 player.damage += 10;
+                player.web += (20 - player.web);
                 ht.Delete("Impact");
 
                 return;
