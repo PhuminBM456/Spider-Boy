@@ -103,7 +103,7 @@ class Panel extends JPanel{
             Capsem();
             checkPlayerATK();
             checkEnemyATK();
-            //enmBot();
+            enmBot();
             isDone();
 
             if(layout){
