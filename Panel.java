@@ -27,6 +27,7 @@ class Panel extends JPanel{
     boolean gameOver = false;
     boolean openDimen = false;
     boolean layout = false;
+    boolean fire = false;
 
     Character lastKey = null;
     Player player = new Player();
@@ -39,6 +40,7 @@ class Panel extends JPanel{
     Vector<Bullet> bullets = new Vector<>();
     Queue capsem = new Queue();
     HashTable ht = new HashTable();
+    Missile missile = new Missile(5);
 
     // constructor
     Panel(){
@@ -107,19 +109,28 @@ class Panel extends JPanel{
         });
 
         Timer timer = new Timer(10,e-> {
-            Capsem();
-            checkPlayerATK();
-            checkEnemyATK();
-            //enmBot();
-            isDone();
-
             // polymorphism
-
             if(player.level == 2)
                 obj1.move();
 
             if(player.level >= 3)
                 obj2.move();
+
+            Capsem();
+            checkPlayerATK();
+            checkEnemyATK();
+            //enmBot(); // <-- enemy bot switch
+            isDone();
+            Fire();
+
+            if(player.playerDead())
+                gameOver = true;
+
+            if(bullets.isEmpty())
+                curr = normal;
+
+            if(player.jump == true)
+                player.Jump();
 
             if(layout){
                 if(lastKey != null && lastKey == '1'){
@@ -142,15 +153,6 @@ class Panel extends JPanel{
                     frameSelected = 9;
                 }
             }
-
-            if(player.playerDead())
-                gameOver = true;
-
-            if(bullets.isEmpty())
-                curr = normal;
-
-            if(player.jump == true)
-                player.Jump();
 
             repaint();
         });
@@ -208,6 +210,30 @@ class Panel extends JPanel{
     void openPocketDimen(){
         if(openDimen){
             layout = true;
+        }
+    }
+
+    void Fire(){
+        if(player.level >= 3 && !fire){
+            fire = true;
+
+            missile.x = obj2.x;
+            missile.y = obj2.y;
+
+            System.out.println(true);
+
+        }else{
+            missile.Move();
+
+            boolean fireCollision = missile.isCollision(missile.getHitBox(),player.getHitBox());
+
+            if(fireCollision){
+                player.hp -= 1;
+            }
+
+            if(missile.y >= 900){
+                fire = false;
+            }
         }
     }
 
@@ -415,20 +441,24 @@ class Panel extends JPanel{
             g.drawRect(obj1.x,obj1.y+75,obj1.width-9,obj1.height-80);
 
             g.drawImage(car,obj1.x,obj1.y,obj1.width,obj1.height,this);
+
+            boolean donee = obj1.isCollision(obj1.getHitBox(),player.getHitBox()); // check object collision
+
+            if(donee) {
+                if(player.hp <= 0){
+                    player.dead = true;
+                }
+                player.hp -= 1;
+            }
         }
 
         if(player.level >= 3){
             g.drawImage(drone,obj2.x,obj2.y,obj2.width,obj2.height,this);
-        }
 
-        // check object collision
-        boolean donee = obj1.isCollision(obj1.getHitBox(),player.getHitBox());
-
-        if(donee) {
-            if(player.hp <= 0){
-                player.dead = true;
+            if(fire){
+                g.setColor(Color.RED);
+                g.fillRect(missile.x,missile.y,10,10);
             }
-            player.hp -= 1;
         }
 
         // hitbox person
@@ -463,9 +493,9 @@ class Panel extends JPanel{
 
         // text
         if(player.level == 1){
-            g.setColor(Color.WHITE);
-        }else{
             g.setColor(Color.BLACK);
+        }else{
+            g.setColor(Color.WHITE);
         }
         g.drawString("Web Shooter " + player.web + "/" + player.maxWeb,10,20);
         g.drawString("Level " + player.level,10,50);
