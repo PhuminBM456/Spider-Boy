@@ -19,15 +19,20 @@ class Panel extends JPanel{
     Image iconImpact =  loadImage(location + "Power1.png");
     Image iconStream =  loadImage(location + "Power2.png");
     Image iconBlank =  loadImage(location + "Power3.png");
+    Image state1 =  loadImage(location + "State1.jpg");
+    Image state2 =  loadImage(location + "State2.jpg");
+    Image car = loadImage(location + "Car.png");
 
     boolean gameOver = false;
     boolean openDimen = false;
     boolean layout = false;
 
     Character lastKey = null;
-
     Player player = new Player();
     Enemy enemy = new Enemy();
+
+    // polymorphism
+    Object obj1 = new Car(900,402,135,150,2);
 
     Vector<Bullet> bullets = new Vector<>();
     Queue capsem = new Queue();
@@ -103,8 +108,11 @@ class Panel extends JPanel{
             Capsem();
             checkPlayerATK();
             checkEnemyATK();
-            enmBot();
+            //enmBot();
             isDone();
+
+            if(player.level >= 2)
+                obj1.move();
 
             if(layout){
                 if(lastKey != null && lastKey == '1'){
@@ -346,6 +354,15 @@ class Panel extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
+        // state
+        if(player.level == 1){
+            g.drawImage(state1,0,0,900,580,this);
+        }else{
+            g.drawImage(state2,0,0,900,580,this);
+        }
+
+
+
         // bullet player
         for(int i=0;i<bullets.size();i++){
             Bullet bullet = bullets.get(i);
@@ -379,8 +396,24 @@ class Panel extends JPanel{
         }
 
 
+        // player & enemy
         g.drawImage(curr,player.x,player.y,player.size,player.size,this);
         g.drawImage(enemy.enemy,enemy.x,enemy.y,enemy.size,enemy.size,this);
+
+        // hitbox object
+        g.setColor(Color.BLUE);
+        g.drawRect(obj1.x,obj1.y+75,obj1.width-9,obj1.height-80);
+
+        // object
+        if(player.level >= 2){
+            g.drawImage(car,obj1.x,obj1.y,obj1.width,obj1.height,this);
+        }
+
+        // check object collision
+        boolean donee = obj1.isCollision(obj1.getHitBox(),player.getHitBox());
+
+        if(donee)
+            player.hp -= 1;
 
         // hitbox person
         g.setColor(Color.RED);
@@ -413,13 +446,16 @@ class Panel extends JPanel{
         }
 
         // text
-        g.setColor(Color.BLACK);
+        if(player.level == 1){
+            g.setColor(Color.WHITE);
+        }else{
+            g.setColor(Color.BLACK);
+        }
         g.drawString("Web Shooter " + player.web + "/" + player.maxWeb,10,20);
         g.drawString("Level " + player.level,10,50);
         g.drawString("Streght " + player.damage,10,80);
 
         g.drawImage(iconBlank,10,100,40,40,this); // pocket dimension
-        g.setColor(Color.BLACK);
 
         if(lastKey != null && lastKey == 'B'){
             g.drawString("ENTER",50,120);

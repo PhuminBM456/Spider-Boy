@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93f1dfdd-7e8f-432a-a1ac-ec092a908d5c" name="Changes" comment="Stream UwU">
+    <list default="true" id="93f1dfdd-7e8f-432a-a1ac-ec092a908d5c" name="Changes" comment="UwU">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/State0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/State1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/State1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/State2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/State2.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
