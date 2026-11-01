@@ -5,10 +5,8 @@ import java.net.URL;
 class Player extends Person{
     // field
     String location = "images/";
-    final int maxWeb = 20;
-    int web = 20;
-    boolean takeDamage = false;
-    boolean stream = false;
+    final int maxWeb = 20; int web = 20;
+    boolean takeDamage = false; boolean stream = false;
     Image normal =  loadImage(location + "Main.png");
     Image left =  loadImage(location + "WebL.png");
     Image right =  loadImage(location + "WebR.png");

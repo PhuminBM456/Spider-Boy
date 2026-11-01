@@ -2,19 +2,13 @@ import java.awt.*;
 
 abstract class Person{
     // field
-    boolean isPlayer;
-    boolean isATK = false;
-    boolean jump = false;
-    boolean falling = false;
-    boolean done = false;
-    boolean dead = false;
-    final int maxLevel = 4;
-    int level = 1;
-    int hp = 100;
-    int x,y;
-    int speed = 10;
-    int jumpPower = 200;
-    int damage = 10;
+    boolean isPlayer; boolean isATK = false;
+    boolean jump = false; boolean falling = false;
+    boolean done = false; boolean dead = false;
+
+    final int maxLevel = 4; int level = 1;
+    int hp = 100; int x,y; int speed = 10;
+    int jumpPower = 200; int damage = 10;
     int size = 150;
 
     // constructor

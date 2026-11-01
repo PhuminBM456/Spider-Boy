@@ -1,7 +1,6 @@
 class HashTable{
     // field
-    final int cap = 9;
-    LinkedList[] arr = new LinkedList[cap];
+    final int cap = 9; LinkedList[] arr = new LinkedList[cap];
 
     //constructor
     HashTable(){
@@ -51,3 +50,4 @@ class HashTable{
         System.out.println(ht.Search("Impact"));
     }
 }
+

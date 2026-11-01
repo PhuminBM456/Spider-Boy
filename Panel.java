@@ -58,7 +58,7 @@ class Panel extends JPanel{
             @Override
             public void keyPressed(KeyEvent e){
 
-                if(!gameOver && player.level != player.maxLevel){
+                if(!gameOver){
                     if(e.getKeyCode() == KeyEvent.VK_RIGHT){
                         lastKey = 'R';
                         player.Right();
@@ -117,7 +117,7 @@ class Panel extends JPanel{
         Timer timer = new Timer(10,e-> {
             resetLevel();
             Tranform();
-            //Test();
+            Test();
             OBJ();
             Capsem();
             checkPlayerATK();
@@ -336,7 +336,8 @@ class Panel extends JPanel{
         }
 
         if(capsem.status){
-            //capsem.Display();
+            // capsem display
+            // capsem.Display();
 
             Capsem cap = capsem.arr[capsem.front];
 
@@ -387,6 +388,7 @@ class Panel extends JPanel{
     }
 
     void checkEnemyATK(){
+
         if(enemy.isATK == true && enemy.shootBullet == false){
             int d = enemy.x - player.x;
             enemy.shootBullet = true;
@@ -398,7 +400,9 @@ class Panel extends JPanel{
                 enemy.enemy = enemy.right;
                 enemy.bullet = new Bullet(enemy.x,enemy.y,7,60);
             }
-        }else if(enemy.isATK == true && enemy.shootBullet == true){
+        }
+        
+        else if(enemy.isATK == true && enemy.shootBullet == true){
             if(enemy.bullet.isTimeOut()){
                 enemy.isATK = enemy.shootBullet = false;
                 enemy.bullet = null;
